@@ -1,0 +1,48 @@
+dgt version: 0.5.0   link: logit 
+Loading required namespace: rstan
+
+--- DGT Information ICC (Theorems 4-5) ---
+Method: monte_carlo 
+
+  I(nu; Y) (mutual information, nats)            0.056  [0.040, 0.073]
+  ICC_I (information)                            0.105  [0.077, 0.136]
+  ICC_eta (link-scale)                           0.160  [0.118, 0.205]
+  Gap (ICC_eta - ICC_I)                          0.055  [0.040, 0.071]
+
+
+--- DGT Information ICC (Theorems 4-5) ---
+Method: monte_carlo 
+
+  I(nu; Y) (mutual information, nats)            0.190  [0.145, 0.248]
+  ICC_I (information)                            0.316  [0.252, 0.391]
+  ICC_eta (link-scale)                           0.480  [0.381, 0.596]
+  Gap (ICC_eta - ICC_I)                          0.164  [0.126, 0.208]
+
+
+--- Distributional Generalizability Theory ---
+Family: bernoulli 
+
+ICC Estimates:
+  ICC_Y (response-scale), absolute  0.105  [0.076, 0.136]
+  ICC_Y (response-scale), relative  0.157  [0.129, 0.188]
+  ICC_eta (link-scale)            0.160  [0.118, 0.205]
+  ICC_I (information)             0.105  [0.075, 0.140]
+
+Link: logit 
+  ICC_Y (absolute) is the population intraclass kappa (Fleiss) and
+  the phi coefficient under compound symmetry (Definition 1).
+
+
+--- Distributional Generalizability Theory ---
+Family: bernoulli 
+
+ICC Estimates:
+  ICC_Y (response-scale), absolute  0.330  [0.260, 0.417]
+  ICC_Y (response-scale), relative  0.369  [0.300, 0.453]
+  ICC_eta (link-scale)            0.480  [0.381, 0.596]
+  ICC_I (information)             0.315  [0.246, 0.395]
+
+Link: logit 
+  ICC_Y (absolute) is the population intraclass kappa (Fleiss) and
+  the phi coefficient under compound symmetry (Definition 1).
+

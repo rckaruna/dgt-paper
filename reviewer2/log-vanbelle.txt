@@ -1,0 +1,24 @@
+Population: P = 0.393, tetrachoric rho = 0.804, phi (intraclass kappa) = 0.591
+Loading required namespace: rstan
+rep 1: kappa = 0.599  probit ICC_Y = 0.577 (pre-0.5.0 0.449)  logit ICC_Y = 0.575  probit ICC_eta = 0.790
+rep 2: kappa = 0.685  probit ICC_Y = 0.653 (pre-0.5.0 0.530)  logit ICC_Y = 0.649  probit ICC_eta = 0.857
+rep 3: kappa = 0.534  probit ICC_Y = 0.528 (pre-0.5.0 0.420)  logit ICC_Y = 0.536  probit ICC_eta = 0.740
+Warning: 1 of 2000 (0.0%) transitions ended with a divergence.
+See https://mc-stan.org/misc/warnings for details.
+
+rep 4: kappa = 0.297  probit ICC_Y = 0.326 (pre-0.5.0 0.273)  logit ICC_Y = 0.346  probit ICC_eta = 0.506
+Warning: 48 of 2000 (2.0%) transitions ended with a divergence.
+See https://mc-stan.org/misc/warnings for details.
+
+rep 5: kappa = 0.740  probit ICC_Y = 0.698 (pre-0.5.0 0.621)  logit ICC_Y = 0.696  probit ICC_eta = 0.892
+    kappa_sample     phi_pairwise probit_icc_Y_abs probit_icc_Y_rel 
+           0.571            0.632            0.557            0.613 
+  probit_icc_eta     probit_icc_I probit_pre_0_5_0  logit_icc_Y_abs 
+           0.757            0.487            0.459            0.560 
+ logit_icc_Y_rel    logit_icc_eta      logit_icc_I  logit_pre_0_5_0 
+           0.613            0.758            0.491            0.550 
+
+Population phi = 0.591; population tetrachoric = 0.804
+Expect: probit ICC_Y_abs and logit ICC_Y_abs both near the population phi
+ and the sample kappa; probit ICC_eta near the tetrachoric rho;
+ pre_0_5_0 markedly below phi (the reported bug).

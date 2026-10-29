@@ -1,0 +1,66 @@
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
+Simulated 80 x 60; zero proportion 0.311; median positive minutes 30.9
+Start sampling
+Running MCMC with 4 parallel chains...
+
+Chain 3 finished in 45.0 seconds.
+Chain 1 finished in 46.6 seconds.
+Chain 2 finished in 47.1 seconds.
+Chain 4 finished in 48.6 seconds.
+
+All 4 chains finished successfully.
+Mean chain execution time: 46.8 seconds.
+Total execution time: 48.7 seconds.
+
+Loading required namespace: rstan
+max Rhat 1.029, divergences 0
+
+--- Distributional Generalizability Theory ---
+Family: hurdle_lognormal 
+
+ICC Estimates:
+  ICC_Z (engagement)              0.164  [0.126, 0.214]
+  ICC_Y* (intensity)              0.231  [0.182, 0.292]
+  ICC_comp (composite)            0.170  [0.141, 0.206]
+
+Variance Decomposition:
+  V1 (binary noise)              341.1004  (30.9%)
+  V2 (continuous noise)          577.4841  (52.3%)
+  V3 (engagement signal)          58.7031  ( 5.3%)
+  V4 (intensity signal)          118.8489  (10.8%)
+  V5 (interaction signal)          8.9393  ( 0.8%)
+
+
+--- DGT Hurdle Variance Decomposition ---
+
+Components:
+  V1 (binary noise)              341.1004  (30.9%)
+  V2 (continuous noise)          577.4841  (52.3%)
+  V3 (engagement signal)          58.7031  ( 5.3%)
+  V4 (intensity signal)          118.8489  (10.8%)
+  V5 (interaction signal)          8.9393  ( 0.8%)
+
+Diagnostics:
+  Binary noise fraction (psi_Z)            0.372  [0.340, 0.405]
+  Engagement signal fraction (phi_Z)       0.360  [0.259, 0.485]
+  Signal / total variance                  0.170  [0.141, 0.206]
+
+Bottleneck: Continuous intensity process (improve measurement precision) 
+
+
+--- DGT Information ICC (Theorems 4-5) ---
+Method: monte_carlo 
+
+  I_engage                                       0.085  [0.057, 0.117]
+  I_intensity (per occasion, given Z=1)          0.164  [0.125, 0.218]
+  I_total                                        0.199  [0.160, 0.246]
+  ICC_I                                          0.329  [0.274, 0.389]
+
+Closed-form components at the true parameters:
+   V1    V2    V3    V4    V5 
+0.352 0.492 0.040 0.109 0.007 
+ICC_comp 0.156, ICC_Z 0.117, ICC_Y* 0.254 (truth)
+Closed form at posterior means: ICC_comp 0.171 (dgt reports 0.17)
+Composite ICC 0.171 -> n*(.80) = 20 occasions; with sigma_e halved, ICC 0.288 -> n*(.80) = 10
+Wrote hurdle_demo_results.rds and figure_hurdle_dstudy.pdf

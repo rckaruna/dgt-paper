@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\caption{Accuracy Reliability for the Amsterdam Chess Test, Illustrating Theorem~\ref{thm:discrete-loss} and Proposition~\ref{prop:binary-icc}. Logit-scale variance components; $\icc_Y$ is the absolute response-scale ICC on the 0/1 scale (equal to the population intraclass kappa), computed by Gauss--Hermite quadrature from posterior draws; $\icc_I$ estimated by Monte Carlo from posterior draws; $n^*_Y$ is the number of conditions required for $E\rho^2 \ge .80$ for the observed proportion, with the link-scale requirement in parentheses.}
+\label{tab:chess-acc}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+Object & $\tau^2_{\text{obj}}$ & $\tau^2_{\text{facet}}$ & $\icc_\eta$ & $\icc_Y$ & $\icc_I$ & $\icc_\eta - \icc_I$ & $n^*_Y$ ($n^*_\eta$) \\
+\midrule
+Person & \begin{tabular}[t]{@{}c@{}}1.474\\ {\footnotesize[1.193, 1.820]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}4.398\\ {\footnotesize[2.939, 7.005]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}0.160\\ {\footnotesize[0.118, 0.205]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}0.105\\ {\footnotesize[0.076, 0.136]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}0.105\\ {\footnotesize[0.076, 0.138]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}0.055\\ {\footnotesize[0.038, 0.074]}\end{tabular} & 34 (21) \\
+Item & \begin{tabular}[t]{@{}c@{}}4.398\\ {\footnotesize[2.939, 7.005]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}1.474\\ {\footnotesize[1.193, 1.820]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}0.480\\ {\footnotesize[0.381, 0.596]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}0.330\\ {\footnotesize[0.260, 0.417]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}0.315\\ {\footnotesize[0.248, 0.392]}\end{tabular} & \begin{tabular}[t]{@{}c@{}}0.165\\ {\footnotesize[0.122, 0.212]}\end{tabular} & 9 (5) \\
+\bottomrule
+\end{tabular}}
+\end{table}

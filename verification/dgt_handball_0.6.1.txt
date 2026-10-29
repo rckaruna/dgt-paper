@@ -1,0 +1,38 @@
+dgt 0.6.1 (~/dev/dgt working tree), run 2026-10-10 16:54
+
+== nine-meter efficiency, with team:game ==
+
+--- Distributional Generalizability Theory ---
+Family: binomial 
+
+ICC Estimates:
+  ICC_Y (response-scale), absolute  0.149  [0.086, 0.246]
+  ICC_Y (response-scale), relative  0.156  [0.089, 0.257]
+  ICC_eta (link-scale)            0.176  [0.102, 0.289]
+  ICC_I (information)             0.156  [0.090, 0.259]
+
+Link: logit 
+  ICC_Y (absolute) is the population intraclass kappa (Fleiss) and
+  the phi coefficient under compound symmetry (Definition 1).
+  Trials vary (2 to 49); sampling term uses their harmonic mean, 19.22.
+  Object-by-facet term(s) in the error of both coefficients: team:game 
+
+required matches (median curve): 0.70 -> 14, 0.80 -> 23 (response scale); link scale 0.70 -> 11, 0.80 -> 19
+
+== nine-meter efficiency, without team:game ==
+
+--- Distributional Generalizability Theory ---
+Family: binomial 
+
+ICC Estimates:
+  ICC_Y (response-scale), absolute  0.167  [0.100, 0.282]
+  ICC_Y (response-scale), relative  0.190  [0.116, 0.314]
+  ICC_eta (link-scale)            0.198  [0.120, 0.330]
+  ICC_I (information)             0.176  [0.105, 0.296]
+
+Link: logit 
+  ICC_Y (absolute) is the population intraclass kappa (Fleiss) and
+  the phi coefficient under compound symmetry (Definition 1).
+  Trials vary (2 to 49); sampling term uses their harmonic mean, 19.22.
+
+required matches (median curve): 0.70 -> 12, 0.80 -> 20 (response scale); link scale 0.70 -> 10, 0.80 -> 17

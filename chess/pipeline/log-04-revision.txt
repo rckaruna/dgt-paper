@@ -1,0 +1,10 @@
+Wrote table_chess_rt.tex
+Wrote table_chess_acc.tex
+Wrote figure_chess_dstudy.pdf
+Wrote chess_numbers.json
+Wrote sessionInfo.txt
+
+All outputs generated. Files for paper:
+  - table_chess_rt.tex
+  - table_chess_acc.tex
+  - figure_chess_dstudy.pdf

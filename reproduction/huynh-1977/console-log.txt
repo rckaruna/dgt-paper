@@ -1,0 +1,178 @@
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
+=====================================================================
+Huynh (1977) re-analysis, data from Choi (2013) Figure 1, p. 25
+run at: 2026-09-11 19:24:42 +0530 
+---------------------------------------------------------------------
+R            : R version 4.6.0 (2026-04-24) 
+dgt          : 0.5.0 
+brms         : 2.23.0 
+cmdstanr     : 0.8.0 
+cmdstan      : 2.39.0 
+posterior    : 1.7.0 
+CHECK: packageVersion("dgt") == 0.5.0  -- OK
+=====================================================================
+
+--- transcribed matrix (see TRANSCRIPTION.md) ---
+ person i1 i2 i3 i4 i5 i6
+      1  1  1  1  1  0  1
+      2  1  0  1  1  1  1
+      3 NA  1  1  1  0  0
+      4  0 NA NA  1  0  1
+      5  1 NA  0  1  0 NA
+      6  1  1  1  1  0  1
+      7  0 NA  1 NA  0  0
+      8  0 NA  1  1  1  1
+      9  1  1  0  1 NA  0
+     10 NA  0  0  0 NA  0
+     11  1  1  1  1  1  1
+     12 NA  0 NA  0  0  1
+
+persons: 12   items: 6 
+missing cells: 13   observed responses: 59 
+CHECK: 12 persons x 6 items, 13 missing, 59 observed -- OK
+
+long data frame: 59 rows
+responses per person:
+
+ 1  2  3  4  5  6  7  8  9 10 11 12 
+ 6  6  5  4  4  6  4  5  5  4  6  4 
+responses per item:
+
+ 1  2  3  4  5  6 
+ 9  8 10 11 10 11 
+overall proportion correct: 0.6271 
+
+--- brms model and priors ---
+                prior     class coef  group resp dpar nlpar   lb   ub tag source
+         normal(0, 2) Intercept                             <NA> <NA>       user
+ student_t(3, 0, 2.5)        sd      person                 <NA> <NA>       user
+ student_t(3, 0, 2.5)        sd        item                 <NA> <NA>       user
+
+
+--- model summary ---
+Loading required namespace: rstan
+ Family: bernoulli 
+  Links: mu = logit 
+Formula: y ~ 1 + (1 | person) + (1 | item) 
+   Data: long (Number of observations: 59) 
+  Draws: 4 chains, each with iter = 3000; warmup = 1000; thin = 1;
+         total post-warmup draws = 8000
+
+Multilevel Hyperparameters:
+~item (Number of levels: 6) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     0.96      0.67     0.06     2.57 1.00     2217     2746
+
+~person (Number of levels: 12) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     1.44      0.71     0.24     3.04 1.00     2031     1756
+
+Regression Coefficients:
+          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept     0.52      0.68    -0.89     1.87 1.00     2888     3368
+
+Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).
+
+--- convergence ---
+max Rhat : 1.0022 
+min bulk ESS: 1461 
+divergent transitions: 0 
+
+--- variance components, logit scale (residual fixed at pi^2/3 = 3.2899 ) ---
+sigma^2 person : 1.823 (0.056, 9.232)    Choi Method D: 0.978
+sigma^2 item   : 0.709 (0.004, 6.582)    Choi Method D: 0.246
+sigma^2 error  : pi^2/3 = 3.290 (fixed)  Choi Method D: 3.287
+
+--- dgt::dgt_icc(fit, person_group = "person") ---
+
+--- Distributional Generalizability Theory ---
+Family: bernoulli 
+
+ICC Estimates:
+  ICC_Y (response-scale), absolute  0.200  [0.009, 0.480]
+  ICC_Y (response-scale), relative  0.225  [0.011, 0.503]
+  ICC_eta (link-scale)            0.295  [0.013, 0.674]
+  ICC_I (information)             0.193  [0.010, 0.439]
+
+Link: logit 
+  ICC_Y (absolute) is the population intraclass kappa (Fleiss) and
+  the phi coefficient under compound symmetry (Definition 1).
+
+
+summary table:
+                           measure estimate     mean       sd      lower    upper
+1 ICC_Y (response-scale), absolute 0.200274 0.211618 0.124821 0.00938660 0.480305
+2 ICC_Y (response-scale), relative 0.224985 0.232844 0.129491 0.01132579 0.503454
+3             ICC_eta (link-scale) 0.294852 0.307794 0.177056 0.01347996 0.673692
+4              ICC_I (information) 0.193379 0.200009 0.113173 0.00988784 0.438594
+
+posterior summaries of the per-draw ICCs [median, 2.5%, 97.5%]:
+  icc_eta    : 0.295 (0.013, 0.674)
+  icc_Y_abs  : 0.200 (0.009, 0.480)
+  icc_Y_rel  : 0.225 (0.011, 0.503)
+  icc_I      : 0.193 (0.010, 0.439)
+
+check that ICC_eta uses the pi^2/3 convention:
+  max |dgt icc_eta - sd_p^2/(sd_p^2 + sd_i^2 + pi^2/3)| = 0 
+
+--- dgt::dgt_dstudy(fit, n_grid = c(1:12, 25, 50), person_group = "person") ---
+curve columns: n, type, median, lower, upper 
+
+  n           type   median     lower    upper
+  1     link-scale 0.294852 0.0134800 0.673692
+  6     link-scale 0.715006 0.0757727 0.925304
+ 12     link-scale 0.833824 0.1408712 0.961203
+ 25     link-scale 0.912691 0.2546235 0.980994
+ 50     link-scale 0.954353 0.4058963 0.990406
+  1 response-scale 0.200824 0.0094857 0.480533
+  6 response-scale 0.601234 0.0543371 0.847335
+ 12 response-scale 0.750963 0.1030734 0.917359
+ 25 response-scale 0.862679 0.1931667 0.958551
+ 50 response-scale 0.926278 0.3237883 0.978837
+
+--- the scale gap as items accumulate (dgt_dstudy medians) ---
+  n  link response   gap ratio
+  1 0.295    0.201 0.094 0.681
+  6 0.715    0.601 0.114 0.841
+ 12 0.834    0.751 0.083 0.901
+ 25 0.913    0.863 0.050 0.945
+ 50 0.954    0.926 0.028 0.971
+
+--- the two coefficients at n = 6 items ---
+ n           type   median     lower    upper
+ 6     link-scale 0.715006 0.0757727 0.925304
+ 6 response-scale 0.601234 0.0543371 0.847335
+
+hand check of the dgt link-scale curve at n = 6:
+  dgt link-scale estimate      : 0.7150 
+  sd_p^2/(sd_p^2+(sd_i^2+pi^2/3)/6) posterior median: 0.7150 
+
+=====================================================================
+COEFFICIENTS AT 6 ITEMS
+=====================================================================
+absolute (Phi), link  scale, dgt_dstudy : 0.715  [0.076, 0.925]    Choi Method D Phi = 0.624
+absolute (Phi), resp. scale, dgt_dstudy : 0.601  [0.054, 0.847]    Choi Method C Phi = 0.388
+relative (E rho^2), link  scale, by hand: 0.769 (0.093, 0.944)    Choi Method D E(rho^2) = 0.641
+relative (E rho^2), resp. scale, by hand: 0.635 (0.064, 0.859)    Choi Method C E(rho^2) = 0.418
+(hand response-scale absolute at n=6, as a check on dgt_dstudy: 0.600 (0.054, 0.847) )
+=====================================================================
+
+--- comparison table ---
+ coefficient                  ours_at_6_items      choi_method_D_latent choi_method_C_response
+ E(rho^2), latent/logit scale 0.769 (0.093, 0.944) 0.641                --                    
+ Phi, latent/logit scale      0.715 (0.076, 0.925) 0.624                --                    
+ E(rho^2), response scale     0.635 (0.064, 0.859) --                   0.418                 
+ Phi, response scale          0.601 (0.054, 0.847) --                   0.388                 
+
+--- does the response-scale coefficient land near Method C? ---
+Choi's Method C E(rho^2) = 0.418 inside our response-scale relative 95% CI: TRUE 
+Choi's Method C Phi      = 0.388 inside our response-scale absolute 95% CI: TRUE 
+Choi's Method D E(rho^2) = 0.641 inside our link-scale relative 95% CI: TRUE 
+Choi's Method D Phi      = 0.624 inside our link-scale absolute 95% CI: TRUE 
+posterior P(response-scale relative < link-scale relative) = 1 
+
+done.
+dgt version in this log: 0.5.0 

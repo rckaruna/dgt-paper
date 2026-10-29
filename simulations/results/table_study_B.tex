@@ -1,0 +1,24 @@
+\begin{table}[H]
+\centering
+\caption{Study B: Bayesian recovery of the Bernoulli coefficients in a crossed persons $\times$ items design ($n_p = 300$, $n_j = 20$, $\sigma^2_o = 0.3$, $R = 100$ per cell). Targets from Proposition~\ref{prop:binary-icc} by quadrature (probit absolute value checked against the exact bivariate-normal form). Bias and coverage of posterior medians and 95\% intervals; $\bar\kappa$ is the mean sample Fleiss kappa, to be compared with the absolute $\icc_Y$.}
+\label{tab:sim-B}
+\small
+\begin{tabular}{llcccccccccc}
+\toprule
+Link & $\icc_\eta$ & $P$ & $\icc_Y$ & Bias$_Y$ & Cov$_Y$ & $\icc_Y^{\mathrm{rel}}$ & Bias$^{\mathrm{rel}}$ & $\icc_I$ & Bias$_I$ & Cov$_I$ & $\bar\kappa$ \\
+\midrule
+probit & 0.10 & 0.50 & 0.064 & -0.002 & 0.97 & 0.074 & -0.002 & 0.064 & -0.002 & 0.97 & 0.057 \\
+logit & 0.10 & 0.50 & 0.075 & -0.002 & 0.95 & 0.080 & -0.001 & 0.075 & -0.002 & 0.98 & 0.072 \\
+probit & 0.25 & 0.50 & 0.161 & -0.004 & 0.97 & 0.181 & -0.003 & 0.159 & -0.005 & 0.98 & 0.154 \\
+logit & 0.25 & 0.50 & 0.181 & 0.000 & 0.97 & 0.189 & 0.000 & 0.179 & -0.002 & 0.99 & 0.180 \\
+probit & 0.50 & 0.50 & 0.333 & -0.007 & 0.97 & 0.360 & -0.004 & 0.321 & -0.009 & 0.99 & 0.326 \\
+logit & 0.50 & 0.50 & 0.355 & -0.004 & 0.97 & 0.365 & -0.002 & 0.336 & -0.004 & 0.98 & 0.353 \\
+probit & 0.10 & 0.20 & 0.051 & -0.001 & 0.95 & 0.057 & 0.000 & 0.049 & -0.001 & 0.97 & 0.045 \\
+logit & 0.10 & 0.20 & 0.054 & 0.000 & 0.95 & 0.057 & 0.000 & 0.052 & 0.000 & 0.95 & 0.052 \\
+probit & 0.25 & 0.20 & 0.134 & -0.002 & 0.92 & 0.147 & -0.001 & 0.123 & -0.001 & 0.97 & 0.130 \\
+logit & 0.25 & 0.20 & 0.143 & -0.001 & 0.91 & 0.147 & 0.000 & 0.128 & -0.001 & 0.97 & 0.141 \\
+probit & 0.50 & 0.20 & 0.295 & -0.002 & 0.93 & 0.313 & 0.000 & 0.251 & -0.002 & 0.97 & 0.292 \\
+logit & 0.50 & 0.20 & 0.308 & -0.004 & 0.98 & 0.314 & -0.003 & 0.255 & -0.003 & 0.99 & 0.304 \\
+\bottomrule
+\end{tabular}
+\end{table}

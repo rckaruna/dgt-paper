@@ -1,0 +1,6 @@
+Wrote table_fims.tex
+Wrote figure_fims_dstudy.pdf
+
+Australia logit, persons: ICC_eta 0.111 [0.073, 0.139]; ICC_Y 0.074 [0.047, 0.095]; ICC_I 0.074; n*(.80) Y 51 vs eta 33; Erho2(14) Y 0.528 vs eta 0.636; SEM14 0.127; ratio Y/eta 0.670
+Australia probit, persons: ICC_eta 0.111; ICC_Y 0.070; small-effect bound phi(z0)^2/(P(1-P)) 0.629 (ratio observed 0.632)
+Link check: ICC_Y 0.074 (logit) vs 0.070 (probit); ICC_eta 0.111 vs 0.111

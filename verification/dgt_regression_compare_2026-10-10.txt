@@ -1,0 +1,65 @@
+Console output of `Rscript verification/check_dgt_060_regression.R compare`,
+run on the Mac on 10 Oct 2026 after `installed` (dgt 0.5.1 from the library,
+commit a672bcc) and `devel` (~/dev/dgt working tree at commit 73d173e, the
+content of tag v0.6.0). Inputs: verification/dgt_regression_installed.rds
+and verification/dgt_regression_devel.rds. Medians printed by the two runs
+were identical to four decimals for every fit:
+
+  chess_acc_person   median ICC_Y_abs 0.1053  rel 0.1574  eta 0.1603  I 0.1055
+  chess_acc_item     median ICC_Y_abs 0.3301  rel 0.3692  eta 0.4803  I 0.3145
+  fims_aus_logit     median ICC_Y_abs 0.0739  rel 0.0998  eta 0.1108  I 0.0736
+  fims_aus_probit    median ICC_Y_abs 0.0697  rel 0.0950  eta 0.1110  I 0.0696
+  fims_jpn_logit     median ICC_Y_abs 0.1267  rel 0.1599  eta 0.1912  I 0.1245
+  fhr_probit         median ICC_Y_abs 0.0189  rel 0.0361  eta 0.0337  I 0.0203
+
+installed 0.5.1 vs devel 0.6.0
+chess_acc_person   icc_Y_abs  identical
+chess_acc_person   icc_Y_rel  identical
+chess_acc_person   icc_eta    identical
+chess_acc_person   icc_I      identical
+chess_acc_person   var_obj    identical
+chess_acc_person   var_facet  identical
+chess_acc_person   var_int    identical
+chess_acc_person   mean_pi    identical
+chess_acc_item     icc_Y_abs  identical
+chess_acc_item     icc_Y_rel  identical
+chess_acc_item     icc_eta    identical
+chess_acc_item     icc_I      identical
+chess_acc_item     var_obj    identical
+chess_acc_item     var_facet  identical
+chess_acc_item     var_int    identical
+chess_acc_item     mean_pi    identical
+fims_aus_logit     icc_Y_abs  identical
+fims_aus_logit     icc_Y_rel  identical
+fims_aus_logit     icc_eta    identical
+fims_aus_logit     icc_I      identical
+fims_aus_logit     var_obj    identical
+fims_aus_logit     var_facet  identical
+fims_aus_logit     var_int    identical
+fims_aus_logit     mean_pi    identical
+fims_aus_probit    icc_Y_abs  identical
+fims_aus_probit    icc_Y_rel  identical
+fims_aus_probit    icc_eta    identical
+fims_aus_probit    icc_I      identical
+fims_aus_probit    var_obj    identical
+fims_aus_probit    var_facet  identical
+fims_aus_probit    var_int    identical
+fims_aus_probit    mean_pi    identical
+fims_jpn_logit     icc_Y_abs  identical
+fims_jpn_logit     icc_Y_rel  identical
+fims_jpn_logit     icc_eta    identical
+fims_jpn_logit     icc_I      identical
+fims_jpn_logit     var_obj    identical
+fims_jpn_logit     var_facet  identical
+fims_jpn_logit     var_int    identical
+fims_jpn_logit     mean_pi    identical
+fhr_probit         icc_Y_abs  identical
+fhr_probit         icc_Y_rel  identical
+fhr_probit         icc_eta    identical
+fhr_probit         icc_I      identical
+fhr_probit         var_obj    identical
+fhr_probit         var_facet  identical
+fhr_probit         var_int    identical
+fhr_probit         mean_pi    identical
+
+All draws identical between the two versions.

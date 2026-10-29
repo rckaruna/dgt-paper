@@ -1,0 +1,140 @@
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
+=====================================================================
+Vanbelle (2025) fetal heart rate reproduction
+run at: 2026-09-11 18:35:01 +0530 
+---------------------------------------------------------------------
+R            : R version 4.6.0 (2026-04-24) 
+dgt          : 0.5.0 
+brms         : 2.23.0 
+cmdstanr     : 0.8.0 
+cmdstan      : 2.39.0 
+posterior    : 1.7.0 
+CHECK: packageVersion("dgt") == 0.5.0  -- OK
+=====================================================================
+
+source repository commit:
+52f0a3aadc05d683e2a7b392c3a794cca1ae8dbf | 2025-04-01 08:20:37 +0200 | Add files via upload
+licence of that repository: GNU AFFERO GENERAL PUBLIC LICENSE 
+
+HR.csv dimensions (recordings x midwives): 145 16 
+missing values in HR.csv: 0 
+range of the raw FHR values (bpm): 60 193 
+CHECK: 145 recordings, 16 midwives -- OK
+
+proportion classified abnormal, by midwife:
+ FHR_R1  FHR_R2  FHR_R4  FHR_R6  FHR_R7  FHR_R8  FHR_R9 FHR_R10 FHR_R12 FHR_R13 FHR_R14 FHR_R15 FHR_R16 FHR_R19 FHR_R20 
+  0.145   0.228   0.421   0.186   0.248   0.297   0.303   0.283   0.200   0.262   0.241   0.324   0.276   0.276   0.269 
+FHR_R21 
+  0.241 
+
+overall proportion abnormal P = 0.2625 
+
+long data frame: 2320 rows = 145 x 16 
+
+--- sample coefficients computed directly from the 145 x 16 table ---
+Fleiss kappa (intraclass kappa, binary)      : 0.5062 
+mean pairwise phi over 120 rater pairs      : 0.5154 
+   sd of the pairwise phi                    : 0.095 
+   range of the pairwise phi                 : 0.2203, 0.7923 
+Vanbelle's published kappa_abs = .51 (.43, .58)
+Vanbelle's published phi_abs   = .48 (.41, .55)
+
+--- brms model and priors ---
+        prior     class coef group resp dpar nlpar   lb   ub tag source
+ normal(0, 1) Intercept                            <NA> <NA>       user
+ cauchy(0, 1)        sd        sub                 <NA> <NA>       user
+ cauchy(0, 1)        sd        met                 <NA> <NA>       user
+
+
+--- model summary ---
+Loading required namespace: rstan
+ Family: bernoulli 
+  Links: mu = probit 
+Formula: y ~ 1 + (1 | sub) + (1 | met) 
+   Data: dat (Number of observations: 2320) 
+  Draws: 4 chains, each with iter = 4000; warmup = 1000; thin = 1;
+         total post-warmup draws = 12000
+
+Multilevel Hyperparameters:
+~met (Number of levels: 16) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     0.37      0.09     0.23     0.57 1.00     4741     7136
+
+~sub (Number of levels: 145) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     1.64      0.15     1.38     1.95 1.00     2981     5565
+
+Regression Coefficients:
+          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept    -1.15      0.18    -1.51    -0.81 1.00     1926     3598
+
+Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).
+
+--- convergence ---
+max Rhat : 1.0026 
+min bulk ESS: 1926 
+divergent transitions: 0 
+
+--- variance components (probit link, residual variance fixed at 1) ---
+sigma_S  (sd, subjects) : 1.6413  1.6347  1.3784  1.9492 
+sigma_R  (sd, midwives) : 0.3698  0.3581  0.2318  0.5735 
+sigma2_S (var, subjects): 2.7155  2.6722  1.9001  3.7992 
+sigma2_R (var, midwives): 0.1446  0.1283  0.0537  0.3289 
+   [mean median lo hi]
+Vanbelle's published sigma_R^2 = .13 (.05, .33)
+
+her Eq. (11) recomputed by hand from our posterior:
+tau_abs = 0.6991  0.7004  0.6205  0.7707 
+Vanbelle's published tau_abs = .70 (.62, .77)
+
+--- dgt::dgt_icc(fit, person_group = "sub") ---
+
+--- Distributional Generalizability Theory ---
+Family: bernoulli 
+
+ICC Estimates:
+  ICC_Y (response-scale), absolute  0.475  [0.404, 0.545]
+  ICC_Y (response-scale), relative  0.485  [0.416, 0.553]
+  ICC_eta (link-scale)            0.700  [0.621, 0.771]
+  ICC_I (information)             0.405  [0.334, 0.475]
+
+Link: probit 
+  ICC_Y (absolute) is the population intraclass kappa (Fleiss) and
+  the phi coefficient under compound symmetry (Definition 1).
+  Under the probit link ICC_eta is the tetrachoric correlation.
+
+
+summary table:
+                           measure estimate     mean        sd    lower    upper
+1 ICC_Y (response-scale), absolute 0.474627 0.474546 0.0364395 0.404109 0.545366
+2 ICC_Y (response-scale), relative 0.484871 0.484693 0.0352020 0.416315 0.553203
+3             ICC_eta (link-scale) 0.700352 0.699128 0.0385827 0.620517 0.770687
+4              ICC_I (information) 0.405420 0.405162 0.0358985 0.333952 0.474821
+
+--- per-draw ICC columns available ---
+[1] "icc_Y"     "icc_Y_rel" "icc_Y_abs" "icc_eta"   "icc_I"     "var_obj"   "var_facet" "var_int"   "mean_pi"  
+
+--- posterior summaries of the dgt draws ---
+icc_eta    : 0.6991  0.7004  0.6205  0.7707
+icc_Y_abs  : 0.4745  0.4746  0.4041  0.5454
+icc_Y_rel  : 0.4847  0.4849  0.4163  0.5532
+icc_I      : 0.4052  0.4054  0.334  0.4748
+   [mean median lo hi]
+
+--- agreement between dgt icc_eta and her Eq. (11) ---
+max |icc_eta - tau_abs_manual| = 0 
+
+--- side by side ---
+ quantity                   ours                 vanbelle                  
+ sigma_R^2                  0.128 (0.054, 0.329) .13 (.05, .33)            
+ ICC_eta (latent)           0.700 (0.621, 0.771) tau_abs = .70 (.62, .77)  
+ ICC_Y absolute (manifest)  0.475 (0.404, 0.545) phi_abs = .48 (.41, .55)  
+ ICC_Y relative (manifest)  0.485 (0.416, 0.553) -- (not reported)         
+ Fleiss kappa (sample)      0.506                kappa_abs = .51 (.43, .58)
+ mean pairwise phi (sample) 0.515                phi_abs = .48 (.41, .55)  
+
+done.
+dgt version in this log: 0.5.0 

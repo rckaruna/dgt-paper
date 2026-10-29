@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\caption{Study A: Bayesian recovery of the lognormal one-facet ICCs ($n_p = 50$, $n_j = 30$, $R = 200$ per cell). Bias and RMSE of posterior medians against the analytic targets of Theorem~\ref{thm:lognormal-icc}; coverage of 95\% credible intervals; $\mathcal{O}$ is the mean posterior-median overestimation ratio. Monte Carlo standard errors of the biases are at most 
+0.0041.}
+\label{tab:sim-A}
+\small
+\begin{tabular}{cccccccccc}
+\toprule
+$\icc_\eta$ & $\sigma^2_\eta$ & $\icc_Y$ & Bias$_\eta$ & RMSE$_\eta$ & Cov$_\eta$ & Bias$_Y$ & RMSE$_Y$ & Cov$_Y$ & $\mathcal{O}$ \\
+\midrule
+0.10 & 0.25 & 0.089 & 0.001 & 0.023 & 0.96 & 0.001 & 0.020 & 0.96 & 1.12 \\
+0.25 & 0.25 & 0.227 & 0.006 & 0.044 & 0.94 & 0.005 & 0.040 & 0.94 & 1.10 \\
+0.50 & 0.25 & 0.469 & 0.002 & 0.057 & 0.94 & 0.001 & 0.054 & 0.94 & 1.07 \\
+0.10 & 1.00 & 0.061 & 0.002 & 0.024 & 0.95 & 0.001 & 0.015 & 0.95 & 1.63 \\
+0.25 & 1.00 & 0.165 & 0.011 & 0.045 & 0.93 & 0.007 & 0.030 & 0.93 & 1.51 \\
+0.50 & 1.00 & 0.378 & -0.007 & 0.056 & 0.92 & -0.006 & 0.041 & 0.93 & 1.33 \\
+0.10 & 2.00 & 0.035 & 0.003 & 0.025 & 0.93 & 0.001 & 0.009 & 0.93 & 2.89 \\
+0.25 & 2.00 & 0.102 & -0.003 & 0.039 & 0.96 & -0.001 & 0.015 & 0.98 & 2.47 \\
+0.50 & 2.00 & 0.269 & -0.003 & 0.052 & 0.95 & -0.002 & 0.026 & 0.94 & 1.87 \\
+\bottomrule
+\end{tabular}
+\end{table}

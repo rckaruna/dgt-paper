@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Hurdle variance decomposition for the simulated practice-minutes data ($80$ persons $\times$ $60$ occasions; generating values $\alpha = 0.70$, $\tau = 0.80$, $\mu = 3.50$, $\sigma_p = 0.40$, $\sigma_e = 0.60$, seed 20260926). Posterior medians with 95\% credible intervals.}
+\label{tab:hurdle}
+\begin{tabular}{lrr}
+\toprule
+Component & Value [95\% CI] & \% of total \\
+\midrule
+V1 (binary noise) & 341.10 [281.54, 429.70] & 30.9\% \\
+V2 (continuous noise) & 577.48 [469.11, 724.29] & 52.3\% \\
+V3 (engagement signal) & 58.70 [40.99, 83.14] & 5.3\% \\
+V4 (intensity signal) & 118.85 [77.74, 191.27] & 10.8\% \\
+V5 (interaction signal) & 8.94 [5.32, 15.53] & 0.8\% \\
+\midrule
+\multicolumn{3}{l}{Reliability} \\
+$\icc_Z$ (engagement) & \multicolumn{2}{l}{0.164 [0.126, 0.214]} \\
+$\icc_{Y^*}$ (intensity) & \multicolumn{2}{l}{0.231 [0.182, 0.292]} \\
+$\icc^{\mathrm{comp}}$ (composite) & \multicolumn{2}{l}{0.170 [0.141, 0.206]} \\
+$\icc_I$ (information) & \multicolumn{2}{l}{0.329 [0.274, 0.389]} \\
+\bottomrule
+\end{tabular}
+\end{table}

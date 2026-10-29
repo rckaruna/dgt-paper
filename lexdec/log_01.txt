@@ -1,0 +1,76 @@
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
+trying URL 'https://cloud.r-project.org/bin/macosx/sonoma-arm64/contrib/4.6/languageR_1.6.tgz'
+Content type 'application/x-gzip' length 2484362 bytes (2.4 MB)
+==================================================
+downloaded 2.4 MB
+
+
+The downloaded binary packages are in
+	/var/folders/1v/vxytsn857gg2vr82t1gmrp9h0000gp/T//RtmpIm8C0H/downloaded_packages
+dgt version: 0.6.1 
+1594 correct-response observations; 21 subjects; 79 words; mean RT 610 ms, median 571 ms
+Start sampling
+Running MCMC with 4 sequential chains...
+
+Chain 1 finished in 9.8 seconds.
+Chain 2 finished in 8.3 seconds.
+Chain 3 finished in 11.2 seconds.
+Chain 4 finished in 7.8 seconds.
+
+All 4 chains finished successfully.
+Mean chain execution time: 9.3 seconds.
+Total execution time: 37.4 seconds.
+
+Loading required namespace: rstan
+ Family: lognormal 
+  Links: mu = identity 
+Formula: rt_ms ~ 1 + (1 | Subject) + (1 | Word) 
+   Data: d (Number of observations: 1594) 
+  Draws: 4 chains, each with iter = 4000; warmup = 1000; thin = 1;
+         total post-warmup draws = 12000
+
+Multilevel Hyperparameters:
+~Subject (Number of levels: 21) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     0.16      0.03     0.11     0.22 1.00     2106     3910
+
+~Word (Number of levels: 79) 
+              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sd(Intercept)     0.08      0.01     0.07     0.10 1.00     3613     5700
+
+Regression Coefficients:
+          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept     6.39      0.04     6.32     6.46 1.00     1273     2385
+
+Further Distributional Parameters:
+      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sigma     0.17      0.00     0.16     0.18 1.00    13811     8386
+
+Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).
+
+--- Distributional Generalizability Theory ---
+Family: lognormal 
+
+ICC Estimates:
+  ICC_eta (link-scale)            0.404  [0.269, 0.586]
+  ICC_Y (response-scale)          0.396  [0.264, 0.576]
+  ICC_I (information)             0.404  [0.269, 0.586]
+  Overestimation (O)              1.018  [1.016, 1.020]
+
+    threshold link_scale arith_mean geom_mean
+0.7       0.7          4          4         4
+0.8       0.8          6          7         6
+0.9       0.9         14         14        14
+
+HEADLINE (Section 9.1)
+sigma_p       0.15 [0.11, 0.22] 
+sigma_w       0.08 [0.07, 0.10] 
+sigma_eps     0.17 [0.16, 0.18] 
+sigma^2_eta   0.060 
+ICC_eta       0.404 [0.269, 0.586] 
+ICC_Y         0.396 [0.264, 0.576] 
+O (median of overestimation draws) 1.018 
+n* for 0.80: link 6  response 7 
