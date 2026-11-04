@@ -157,12 +157,12 @@ dgtv = re.search(r"dgt\s*:\s*([0-9.]+)", log).group(1)
 lines = [
     r"\begin{table}[tp]",
     r"\centering",
-    r"\caption{Reproduction of the fetal heart rate example of Vanbelle (2025, Section~6): 145 recordings classified as normal or abnormal by 16 midwives, probit crossed random-effects model with her priors, refitted in \texttt{brms} and passed to \texttt{dgt\_icc()} (\texttt{dgt} " + dgtv + r"; 12,000 post-warmup draws, maximum $\hat R$ " + rhat + r", minimum bulk ESS " + ess + r", " + div + r" divergent transitions). Posterior medians with 95\% intervals; her values as printed on her p.~14. The sample Fleiss kappa of the raw table is " + kappa + r".}",
+    r"\caption{Reproduction of the fetal heart rate example of Vanbelle (2026, Section~6): 145 recordings classified as normal or abnormal by 16 midwives, probit crossed random-effects model with her priors, refitted in \texttt{brms} and passed to \texttt{dgt\_icc()} (\texttt{dgt} " + dgtv + r"; 12,000 post-warmup draws, maximum $\hat R$ " + rhat + r", minimum bulk ESS " + ess + r", " + div + r" divergent transitions). Posterior medians with 95\% intervals; her values as printed on her p.~757. The sample Fleiss kappa of the raw table is " + kappa + r".}",
     r"\label{tab:S-fhr}",
     r"\small",
     r"\begin{tabular}{lll}",
     r"\toprule",
-    r"Quantity & This reproduction & Vanbelle (2025) \\",
+    r"Quantity & This reproduction & Vanbelle (2026) \\",
     r"\midrule",
 ]
 rename = {
@@ -177,6 +177,8 @@ for q, ours, hers in entries:
     hers = hers.replace("-- (not reported)", "not reported").replace("--", "not reported").replace("_abs", r"$_{\mathrm{abs}}$").replace("tau$", r"$\tau$").replace("phi$", r"$\varphi$").replace("kappa$", r"$\kappa$")
     hers = re.sub(r"^(tau|phi|kappa)", lambda m: {"tau": r"$\hat\tau", "phi": r"$\hat\varphi", "kappa": r"$\hat\kappa"}[m.group(1)], hers)
     hers = hers.replace(r"$_{\mathrm{abs}}$ =", r"_{\mathrm{abs}}$ =")
+    if q == "mean pairwise phi (sample)":
+        hers = "not reported"
     lines.append(f"{rename.get(q, q)} & {ours} & {hers} " + r"\\")
 lines += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
 write("table_vanbelle_fhr.tex", lines)

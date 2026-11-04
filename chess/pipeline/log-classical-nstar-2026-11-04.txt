@@ -1,0 +1,27 @@
+Classical (link-scale) D-study requirements for the chess response times,
+read from the median curves saved by 03_analyze.R in chess_results.rds
+(dstudy_curves$person_classical, $item_classical, $person_dgt), run on the
+Mac on 4 Nov 2026 to check the counts quoted in Section 9.2. The last line
+is a control: the DGT counts read the same way must equal the draw-wise
+values printed by 03_analyze.R (26 and 15), and they do.
+
+Command (from chess/pipeline/):
+Rscript -e '
+r <- readRDS("chess_results.rds"); cc <- r$rt$dstudy_curves
+f <- function(cv, c) min(cv$n[cv$median >= c])
+cat("classical person n*: 0.80 ->", f(cc$person_classical, .80), " 0.70 ->", f(cc$person_classical, .70), "\n")
+cat("classical item   n*: 0.80 ->", f(cc$item_classical, .80),   " 0.70 ->", f(cc$item_classical, .70), "\n")
+n80 <- f(cc$person_classical, .80)
+cat("response-scale E rho^2 at n =", n80, ":", round(cc$person_dgt$median[cc$person_dgt$n == n80], 3), "\n")
+cat("DGT person n*: 0.80 ->", f(cc$person_dgt, .80), " 0.70 ->", f(cc$person_dgt, .70), "\n")
+'
+
+Output:
+classical person n*: 0.80 -> 20  0.70 -> 12 
+classical item   n*: 0.80 -> 6  0.70 -> 4 
+response-scale E rho^2 at n = 20 : 0.759 
+DGT person n*: 0.80 -> 26  0.70 -> 15 
+
+Section 9.2 therefore reads 20 (classical, persons, 0.80), 12, 6, 4, and a
+response-scale reliability of 0.76 at n = 20. The submitted and the
+29 Oct 2026 versions said 21 and 0.77, which matched nothing printed.
