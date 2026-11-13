@@ -1,0 +1,7 @@
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
+Loading required namespace: rstan
+chess_rt_fit.rds, fixed effects and variance components (4): Rhat 1.000 to 1.005; min bulk ESS 717; min tail ESS 1558
+chess_rt_fit.rds, all parameters (301): Rhat 1.000 to 1.006; min bulk ESS 717; min tail ESS 1459
+chess_acc_fit.rds, fixed effects and variance components (3): Rhat 1.002 to 1.003; min bulk ESS 691; min tail ESS 1187
+chess_acc_fit.rds, all parameters (300): Rhat 1.000 to 1.003; min bulk ESS 691; min tail ESS 1187
