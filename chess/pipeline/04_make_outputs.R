@@ -160,7 +160,7 @@ p <- ggplot(plot_df, aes(x = n, y = median, color = method, fill = method)) +
   scale_fill_manual(values = c("Classical (link-scale)" = "#b22222",
                                "DGT (response-scale)"   = "#1f3a5f")) +
   labs(
-    x = "Number of items (n)",
+    x = "n (items in the Person panel, players in the Item panel)",
     y = expression(E*rho^2),
     color = NULL, fill = NULL
   ) +

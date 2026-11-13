@@ -41,7 +41,7 @@ if (file.exists(sprintf("results/study_A%s.csv", sfx))) {
     "\\label{tab:sim-A}", "\\small", "\\begin{tabular}{cccccccccc}", "\\toprule",
     "$\\icc_\\eta$ & $\\sigma^2_\\eta$ & $\\icc_Y$ & Bias$_\\eta$ & RMSE$_\\eta$ & Cov$_\\eta$ & Bias$_Y$ & RMSE$_Y$ & Cov$_Y$ & $\\mathcal{O}$ \\\\", "\\midrule",
     sprintf("%s & %s & %s & %s & %s & %s & %s & %s & %s & %s \\\\", f2(sA$icc_eta), f2(sA$s2eta), f3(sA$icc_Y),
-            f3(sA$bias_eta), f3(sA$rmse_eta), f2(sA$cov_eta), f3(sA$bias_Y), f3(sA$rmse_Y), f2(sA$cov_Y), f2(sA$O_mean)),
+            f3(sA$bias_eta), f3(sA$rmse_eta), f3(sA$cov_eta), f3(sA$bias_Y), f3(sA$rmse_Y), f3(sA$cov_Y), f2(sA$O_mean)),
     "\\bottomrule", "\\end{tabular}", "\\end{table}")
   writeLines(tex, sprintf("results/table_study_A%s.tex", sfx))
   numbers$study_A <- list(n_excluded = n_fail, max_abs_bias_Y = max(abs(sA$bias_Y)), min_cov_Y = min(sA$cov_Y),
