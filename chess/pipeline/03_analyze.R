@@ -5,8 +5,10 @@
 ## For response times (lognormal): uses dgt::dgt_info_icc (analytic
 ## branch via transformation invariance).
 ##
-## For accuracy (Bernoulli): dgt does not yet support this family for
-## information ICC, so we compute I(nu_p; Y) by Monte Carlo in-script.
+## For accuracy (Bernoulli): when this script was written dgt did not
+## support this family for information ICC, so I(nu_p; Y) is computed by
+## Monte Carlo in-script. dgt >= 0.5.0 computes it (dgt_info_icc); the
+## two agree within Monte Carlo error (reviewer2/log-chess-guard.txt).
 ##
 ## Usage:  Rscript 03_analyze.R
 ## ---------------------------------------------------------------------

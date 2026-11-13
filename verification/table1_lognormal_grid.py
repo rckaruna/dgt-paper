@@ -67,7 +67,7 @@ def main():
     rows.append(r"\bottomrule")
     rows.append(r"\end{tabular}")
     rows.append(r"\begin{flushleft}")
-    rows.append(r"\small\textit{Note.} Each cell is computed from Theorem~\ref{thm:lognormal-icc} with $\sigma^2_p = \icc_\eta\,\sigma^2_\eta$ and $\sigma^2_e = (1 - \icc_\eta)\,\sigma^2_\eta$. The overestimation ratio is $\mathcal{O} = \icc_\eta/\icc_Y^{\mathrm{LN}}$ (Definition~\ref{def:ratios}). $n^*$ is the smallest number of occasions for which the Spearman--Brown reliability of the mean reaches $.80$ (Theorem~\ref{thm:dstudy-arith}); the classical D-study based on $\icc_\eta$ reports the value in parentheses. The two empirical illustrations have $\sigma^2_\eta \approx 0.06$ (Section~\ref{sec:rt}) and $\sigma^2_\eta = 0.56$ (Section~\ref{sec:chess}).")
+    rows.append(r"\small\textit{Note.} Each cell is computed from Theorem~\ref{thm:lognormal-icc} with $\sigma^2_p = \icc_\eta\,\sigma^2_\eta$ and $\sigma^2_e = (1 - \icc_\eta)\,\sigma^2_\eta$. The overestimation ratio is $\mathcal{O} = \icc_\eta/\icc_Y^{\mathrm{LN}}$ (Definition~\ref{def:ratios}). $n^*$ is the smallest number of occasions for which the Spearman--Brown reliability of the mean reaches $.80$ (Theorem~\ref{thm:dstudy-arith}); the classical D-study based on $\icc_\eta$ reports the value in parentheses. The two lognormal illustrations have $\sigma^2_\eta \approx 0.06$ (Section~\ref{sec:rt}) and $\sigma^2_\eta = 0.56$ (Section~\ref{sec:chess}).")
     rows.append(r"\end{flushleft}")
     rows.append(r"\end{table}")
     with open(out, "w") as f:

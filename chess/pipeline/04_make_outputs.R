@@ -116,7 +116,7 @@ row_acc_item <- sprintf(
 acc_table <- c(
   "\\begin{table}[t]",
   "\\centering",
-  "\\caption{Accuracy Reliability for the Amsterdam Chess Test, Illustrating Theorem~\\ref{thm:discrete-loss} and Proposition~\\ref{prop:binary-icc}. Logit-scale variance components; $\\icc_Y$ is the absolute response-scale ICC on the 0/1 scale (equal to the population intraclass kappa), computed by Gauss--Hermite quadrature from posterior draws; $\\icc_I$ estimated by Monte Carlo from posterior draws; $n^*_Y$ is the number of conditions required for $E\\rho^2 \\ge .80$ for the observed proportion, with the link-scale requirement in parentheses.}",
+  "\\caption{Accuracy Reliability for the Amsterdam Chess Test, Illustrating Theorem~\\ref{thm:ordering}(b) and Proposition~\\ref{prop:binary-icc}. Logit-scale variance components; $\\icc_Y$ is the absolute response-scale ICC on the 0/1 scale (equal to the population intraclass kappa), computed by Gauss--Hermite quadrature from posterior draws; $\\icc_I$ estimated by Monte Carlo from posterior draws; $n^*_Y$ is the number of conditions required for $E\\rho^2 \\ge .80$ for the observed proportion, with the link-scale requirement in parentheses.}",
   "\\label{tab:chess-acc}",
   "\\small",
   "\\resizebox{\\textwidth}{!}{%",

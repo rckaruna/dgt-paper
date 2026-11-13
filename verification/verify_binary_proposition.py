@@ -13,7 +13,7 @@ Checks, each printed PASS/FAIL:
   D2  probit limit <= 2/pi; logit (no facet) limit <= pi^2/12
   R1  ICC_I / ICC_Y -> 1 as sd_p -> 0
   R2  ICC_I <= ICC_Y on a 504-cell grid over both links (empirical regularity)
-  R3  ICC_Y < ICC_eta on the same grid, both links (ordering (b); proved for probit only)
+  R3  ICC_Y < ICC_eta on the same grid, both links (ordering (b); proved for both links, Theorem 9(b))
 
 Requires numpy, scipy. Deterministic (Gauss-Hermite quadrature); no seeds.
 """
@@ -113,7 +113,7 @@ for inv, name in [(norm.cdf, "probit"), (expit, "logit")]:
         q = moments(mu, sp, so, inv); tot += 1
         if q["icc_I"] > q["icc_abs"] + 1e-9: viol += 1
 check(f"R2 ICC_I <= ICC_Y on {tot}-cell grid (empirical regularity)", viol == 0, f"violations={viol}")
-# ---- R3: ICC_Y (absolute) < ICC_eta on the same grid, both links (ordering (b) for the logit is not proved) ----
+# ---- R3: ICC_Y (absolute) < ICC_eta on the same grid, both links (ordering (b); proved for both links by Theorem 9(b)) ----
 viol3 = 0; tot3 = 0; min_ratio = 1.0
 for inv, rvar, name in [(norm.cdf, 1.0, "probit"), (expit, np.pi ** 2 / 3, "logit")]:
     for mu, sp, so in itertools.product([-3, -2, -1, -0.5, 0, 0.5, 1, 2, 3], [0.05, 0.2, 0.5, 1, 2, 3, 5], [0, 0.3, 1, 2]):

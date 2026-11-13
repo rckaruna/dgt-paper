@@ -5,6 +5,7 @@ Reads only files written by the analysis scripts and writes LaTeX tables
 into manuscript/generated/. Nothing here is typed by hand.
 
   simulations/results/numbers.json            -> table_study_A_full.tex, table_study_B_full.tex
+  simulations/results/study_*.csv, *_targets.csv -> the bias columns of those tables (see recompute_biases)
   reviewer2/vanbelle_design_results.csv       -> table_r2_design.tex
   reproduction/vanbelle-fhr/console-log.txt   -> table_vanbelle_fhr.tex
 
@@ -43,6 +44,42 @@ def write(name, lines):
 
 # ---------------------------------------------------------------- Study A
 num = json.load(open(os.path.join(ROOT, "simulations", "results", "numbers.json")))
+
+
+def recompute_biases(num):
+    """numbers.json stores six decimal places, so a bias printed here to four decimals from it
+    would be rounded twice (-0.0067504 -> -0.00675 -> -0.0067). The biases are recomputed from the
+    per-replicate files exactly as simulations/analyze.R computes them, checked against numbers.json,
+    and substituted at full precision."""
+    res = os.path.join(ROOT, "simulations", "results")
+    mean = lambda xs: sum(xs) / len(xs)
+    changed = 0
+    for study, keymap in (("A", {"bias_eta": ("icc_eta_med", "icc_eta"), "bias_Y": ("icc_Y_med", "icc_Y")}),
+                          ("B", {"bias_abs": ("abs_med", "icc_Y_abs"), "bias_rel": ("rel_med", "icc_Y_rel"),
+                                "bias_eta": ("eta_med", "icc_eta"), "bias_I": ("I_med", "icc_I")})):
+        targets = {int(r["cell"]): r for r in csv.DictReader(open(os.path.join(res, f"study_{study}_targets.csv")))}
+        reps = {}
+        for r in csv.DictReader(open(os.path.join(res, f"study_{study}.csv"))):
+            if r["ok"] == "TRUE":
+                reps.setdefault(int(r["cell"]), []).append(r)
+        for c in num[f"study_{study}"]["cells"]:
+            d, t = reps[c["cell"]], targets[c["cell"]]
+            assert len(d) == c["R"], (study, c["cell"], len(d), c["R"])
+            for k, (col, tcol) in keymap.items():
+                v = mean([float(r[col]) for r in d]) - float(t[tcol])
+                assert abs(v - c[k]) < 1e-6, (study, c["cell"], k, v, c[k])
+                changed += f4(v) != f4(c[k])
+                c[k] = v
+    cells = {(c["link"], round(c["icc_eta"], 6), round(c["P"], 6)): c for c in num["study_B"]["cells"]}
+    for r in num["study_B"]["link_invariance"]:
+        for link in ("probit", "logit"):
+            v = cells[(link, round(r["icc_eta"], 6), round(r["P"], 6))]["bias_abs"]
+            assert abs(v - r[f"bias_abs_{link}"]) < 1e-6
+            r[f"bias_abs_{link}"] = v
+    print("biases recomputed from the per-replicate files; entries that change at four decimals:", changed)
+
+
+recompute_biases(num)
 A = num["study_A"]
 lines = [
     r"\begin{table}[tp]",
@@ -118,7 +155,7 @@ cols = ["kappa_sample", "phi_pairwise", "probit_icc_Y_abs", "probit_icc_Y_rel", 
 lines = [
     r"\begin{table}[tp]",
     r"\centering",
-    r"\caption{Reproduction of the simulated design in Reviewer 2's R file (five replicates of her generating model, fitted under the probit and the logit link with \texttt{dgt} 0.5.0). Sample kappa and mean pairwise phi are computed from the raw data; the remaining columns are posterior medians from \texttt{dgt\_icc()}; ``pre-0.5.0'' is the value the package returned before the correction described in Section~8 of the main text. The last row is the mean over replicates.}",
+    r"\caption{Reproduction of the simulated design in Reviewer 2's R file (five replicates of a design of her size, 50 subjects and 5 raters, generated with variance components and an intercept near the posterior means her file reports, and fitted under the probit and the logit link with \texttt{dgt} 0.5.0). Sample kappa and mean pairwise phi are computed from the raw data; the remaining columns are posterior medians from \texttt{dgt\_icc()}; ``pre-0.5.0'' is the value the package returned before the correction described in Section~8 of the main text. The last row is the mean over replicates.}",
     r"\label{tab:S-r2design}",
     r"\footnotesize",
     r"\setlength{\tabcolsep}{3.5pt}",
@@ -157,7 +194,7 @@ dgtv = re.search(r"dgt\s*:\s*([0-9.]+)", log).group(1)
 lines = [
     r"\begin{table}[tp]",
     r"\centering",
-    r"\caption{Reproduction of the fetal heart rate example of Vanbelle (2026, Section~6): 145 recordings classified as normal or abnormal by 16 midwives, probit crossed random-effects model with her priors, refitted in \texttt{brms} and passed to \texttt{dgt\_icc()} (\texttt{dgt} " + dgtv + r"; 12,000 post-warmup draws, maximum $\hat R$ " + rhat + r", minimum bulk ESS " + ess + r", " + div + r" divergent transitions). Posterior medians with 95\% intervals; her values as printed on her p.~757. The sample Fleiss kappa of the raw table is " + kappa + r".}",
+    r"\caption{Reproduction of the fetal heart rate example of Vanbelle (2026, Section~6): 145 recordings classified as normal or abnormal by 16 midwives, probit crossed random-effects model with her priors, refitted in \texttt{brms} and passed to \texttt{dgt\_icc()} (\texttt{dgt} " + dgtv + r"; 12,000 post-warmup draws, maximum $\hat R$ " + rhat + r", minimum bulk ESS " + ess + r", " + div + r" divergent transitions). Posterior medians with 95\% intervals; her values as printed on her p.~757. The sample Fleiss kappa of the raw table is " + kappa + r"; her $\hat\kappa_{\mathrm{abs}}$ is the kappa with rater-specific margins.}",
     r"\label{tab:S-fhr}",
     r"\small",
     r"\begin{tabular}{lll}",
@@ -170,7 +207,7 @@ rename = {
     "ICC_eta (latent)": r"$\icc_\eta$ (latent scale; her $\hat\tau_{\mathrm{abs}}$)",
     "ICC_Y absolute (manifest)": r"$\icc_Y$, absolute (manifest scale; her $\hat\varphi_{\mathrm{abs}}$)",
     "ICC_Y relative (manifest)": r"$\icc_Y$, relative",
-    "Fleiss kappa (sample)": r"Fleiss kappa of the raw table (her $\hat\kappa_{\mathrm{abs}}$)",
+    "Fleiss kappa (sample)": r"Fleiss kappa of the raw table (pooled margins)",
     "mean pairwise phi (sample)": r"Mean pairwise phi of the raw table",
 }
 for q, ours, hers in entries:

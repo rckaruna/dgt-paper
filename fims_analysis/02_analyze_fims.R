@@ -28,7 +28,7 @@ for (nm in names(fits)) {
   var_ybar <- P * (1 - P) / 14 + (13 / 14) * dp$icc_Y_abs * P * (1 - P)
   erho14 <- 14 * dp$icc_Y_abs / (1 + 13 * dp$icc_Y_abs)
   sem14 <- sqrt(var_ybar * (1 - erho14))
-  # small-effect bound of Proposition (d) evaluated at the posterior means (probit only)
+  # small-effect constant of Proposition 2(d) evaluated at each posterior draw and summarized by q() (probit only)
   bound <- NA
   if (link == "probit") {
     post <- as_draws_df(fit); so <- post[["sd_item_id__Intercept"]]; mu <- post[["b_Intercept"]]

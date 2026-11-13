@@ -6,7 +6,7 @@ and accuracy reliability in a psychometric chess expertise test.
 ## Data
 
 `AmsterdamChess` from the LNIRT R package (van der Maas & Wagenmakers,
-2005). 259 chess players × 40 chess-tactics items; each cell gives a
+2005). 259 chess players × 40 chess items (20 tactical, 10 positional, 10 end-game); each cell gives a
 response time (seconds) and a correctness score (0/1). Missing RTs are
 coded 10000 and missing responses are coded 9; three persons (rows 147,
 201, 209) are entirely missing and are dropped.
