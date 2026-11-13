@@ -47,7 +47,7 @@ A = num["study_A"]
 lines = [
     r"\begin{table}[tp]",
     r"\centering",
-    r"\caption{Study A in full: every per-cell metric of the pre-registration ($n_p = 50$, $n_j = 30$, $R = 200$ per cell; one fit excluded by the refit rule). Targets are the analytic values of Theorem~1 of the main text. Bias is the mean of posterior medians minus the target, with its Monte Carlo standard error (MCSE); Cov is the coverage of the central 95\% credible interval and Width its mean width; $\bar{\mathcal{O}}$ is the mean posterior-median overestimation ratio and Rel.\ the relative overestimation $(\icc_\eta - \icc_Y)/\icc_Y$ at the targets.}",
+    r"\caption{Study A in full ($n_p = 50$, $n_j = 30$, $R = 200$ per cell; one fit excluded by the refit rule). Targets are the analytic values of Theorem~1 of the main text. Bias is the mean of posterior medians minus the target, with its Monte Carlo standard error (MCSE); Cov is the coverage of the central 95\% credible interval and Width its mean width; $\bar{\mathcal{O}}$ is the mean posterior-median overestimation ratio and Rel.\ the relative overestimation $(\icc_\eta - \icc_Y)/\icc_Y$ at the targets.}",
     r"\label{tab:S-studyA}",
     r"\small",
     r"\resizebox{\linewidth}{!}{%",
@@ -97,7 +97,7 @@ write("table_study_B_full.tex", lines)
 lines = [
     r"\begin{table}[tp]",
     r"\centering",
-    r"\caption{The pre-registered comparison of the absolute $\icc_Y$ across links at matched $\icc_\eta$ and prevalence: population targets and biases under each link. The targets differ by construction because the two residual conventions define different populations; the comparison does not test link-invariance, which is a statement about one data set fitted under both links (Sections~8 and~9.3 of the main text).}",
+    r"\caption{The pre-registered comparison of the absolute $\icc_Y$ across links at matched $\icc_\eta$ and prevalence: population targets and biases under each link. The targets differ by construction because the two residual conventions define different populations; the comparison does not test link-invariance, which is a statement about one data set fitted under both links (Section~9.3 of the main text and Section~S5.2).}",
     r"\label{tab:S-linkcompare}",
     r"\small",
     r"\begin{tabular}{cccccc}",
